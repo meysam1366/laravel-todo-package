@@ -1,6 +1,6 @@
 <?php
 
-namespace mmaghsoudi\todopackage\Models;
+namespace meysammaghsoudi\todopackage\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;

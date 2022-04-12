@@ -1,6 +1,6 @@
 <?php
 
-namespace mmaghsoudi\todopackage\Models;
+namespace meysammaghsoudi\todopackage\Models;
 
 class Label
 {

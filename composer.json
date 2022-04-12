@@ -1,10 +1,10 @@
 {
-    "name": "maghsoudi-m/todopackage",
+    "name": "meysammaghsoudi/todopackage",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "mmaghsoudi\\Todopackage\\": "src/"
+            "meysammaghsoudi\\Todopackage\\": "src/"
         }
     },
     "authors": [

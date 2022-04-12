@@ -1,6 +1,6 @@
 <?php
 
-namespace mmaghsoudi\todopackage;
+namespace meysammaghsoudi\todopackage;
 
 use Illuminate\Support\ServiceProvider;
 
