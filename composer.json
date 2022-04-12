@@ -1,0 +1,21 @@
+{
+    "name": "maghsoudi-m/todopackage",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MaghsoudiM\\Todopackage\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Meysam Maghsoudi",
+            "email": "safir.1987@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5|^8.0",
+        "laravel/framework": "^7.*|^8.*|^9.*"
+    }
+}
