@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_todo_id')->constrained();
-            $table->string('title');
+            $table->foreignId('users_todo_id')->constrained('users_todo')->onDelete('cascade');
             $table->text('description');
             $table->enum('status',['Open', 'Close']);
             $table->timestamps();
