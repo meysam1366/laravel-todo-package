@@ -1,6 +1,6 @@
 <?php
 
-namespace meysammaghsoudi\Todopackage\Http\Controllers\Api\v1;
+namespace meysammaghsoudi\todopackage\Http\Controllers\Api\v1;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
