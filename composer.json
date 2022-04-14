@@ -24,7 +24,7 @@
                 "meysammaghsoudi\\Todopackage\\ToDoServiceProvider"
             ],
             "dont-discover": [
-                "meysammaghsoudi/todopackage"
+                "meysammaghsoudi/Todopackage"
             ]
         }
     }
