@@ -2,7 +2,9 @@
 
 namespace meysammaghsoudi\todopackage\Models;
 
-class Task
+use Illuminate\Database\Eloquent\Model;
+
+class Task extends Model
 {
     protected $fillable = [
         'title',
