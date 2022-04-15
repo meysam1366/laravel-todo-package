@@ -5,10 +5,13 @@ namespace meysammaghsoudi\todopackage\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class UserTodo extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
+
+    protected $table = 'users_todo';
 
     /**
      * The attributes that are mass assignable.
