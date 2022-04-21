@@ -10,5 +10,8 @@ use Orchestra\Testbench\TestCase;
 
 class TodoTest extends TestCase
 {
-    
+    public function getTasks()
+    {
+        
+    }
 }
