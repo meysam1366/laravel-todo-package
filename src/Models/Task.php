@@ -3,6 +3,8 @@
 namespace meysammaghsoudi\todopackage\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use meysammaghsoudi\Todopackage\Models\Label;
+use meysammaghsoudi\Todopackage\Models\UserTodo;
 
 class Task extends Model
 {
@@ -14,7 +16,7 @@ class Task extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(UserTodo::class);
     }
 
     public function labels()

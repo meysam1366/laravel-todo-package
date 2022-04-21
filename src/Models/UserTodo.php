@@ -4,12 +4,13 @@ namespace meysammaghsoudi\todopackage\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use meysammaghsoudi\Todopackage\Models\Task;
+
 
 class UserTodo extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens;
 
     protected $table = 'users_todo';
 
@@ -42,6 +43,6 @@ class UserTodo extends Authenticatable
 
     public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Task::class, 'users_todo_id');
     }
 }

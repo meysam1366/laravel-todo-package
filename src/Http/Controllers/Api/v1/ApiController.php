@@ -2,14 +2,17 @@
 
 namespace meysammaghsoudi\todopackage\Http\Controllers\Api\v1;
 
+use meysammaghsoudi\Todopackage\Http\Resources\TaskAPIResource;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use meysammaghsoudi\Todopackage\Models\Task;
 use meysammaghsoudi\Todopackage\Models\UserTodo;
+use meysammaghsoudi\Todopackage\Models\Label;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use meysammaghsoudi\Todopackage\Http\Resources\LabelAPIResource;
 
 class ApiController extends Controller
 {
@@ -52,7 +55,7 @@ class ApiController extends Controller
             }
 
             return response()->json([
-                'token' => $user->token
+                'token' => $user->createToken($request->email)->plainTextToken
             ], 200);
         }else {
             return response()->json([
@@ -79,6 +82,15 @@ class ApiController extends Controller
         return response()->json([
             'message' => 'Task Created successfully'
         ], 201);
+    }
+
+    public function showTask($id)
+    {
+        $task = Task::find($id);
+
+        return response()->json([
+            'task' => $task
+        ], 200);
     }
 
     public function updateTask(Request $request, $id)
@@ -115,7 +127,63 @@ class ApiController extends Controller
         ], 200);
     }
 
-    public function getBearer($request)
+    public function deleteTask($id)
+    {
+        $task = Task::find($id);
+        $task->delete();
+
+        return response()->json([
+            'message' => 'Task deleted successfully'
+        ], 200);
+    }
+
+    public function getTasks(Request $request)
+    {
+        // return $request->all();
+        $user = UserTodo::whereToken(trim($this->getBearer($request)))->first();
+        $tasks = $user->tasks;
+        return response()->json([
+            'tasks' => TaskAPIResource::collection($tasks)
+        ]);
+    }
+
+    public function createLabelByTask(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $task = Task::find($id);
+        foreach ($request->name as $label) {
+            $task->labels()->create([
+                'name' => $label
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Labels task created successfully'
+        ], 201);
+    }
+
+    public function getLabelsByTask($id)
+    {
+        $task = Task::with('labels')->find($id);
+
+        return response()->json([
+            'labels' => $task
+        ], 200);
+    }
+
+    public function getLabels()
+    {
+        $labels = Label::all();
+
+        return response()->json([
+            'labels' => LabelAPIResource::collection($labels)
+        ], 200);
+    }
+
+    private function getBearer($request)
     {
         $header = $request->header('Authorization', '');
         if (Str::startsWith($header, 'Bearer'))
@@ -123,13 +191,6 @@ class ApiController extends Controller
             return Str::substr($header, 7);
         }
         return '';
-    }
-
-    public function getTasks()
-    {
-        return response()->json([
-            'tasks' => Task::all()
-        ]);
     }
 }
 
